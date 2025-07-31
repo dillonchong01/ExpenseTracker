@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="64" fill="#198754"/>
+  <g transform="translate(96, 96)">
+    <!-- Wallet outline -->
+    <rect x="32" y="64" width="256" height="192" rx="16" fill="none" stroke="white" stroke-width="12"/>
+    <!-- Wallet fold -->
+    <path d="M32 64 L48 48 L272 48 L288 64" fill="none" stroke="white" stroke-width="12" stroke-linejoin="round"/>
+    <!-- Card slot -->
+    <rect x="208" y="112" width="64" height="32" rx="8" fill="white"/>
+    <!-- Dollar sign -->
+    <g transform="translate(112, 144)">
+      <path d="M48 16 Q64 16 64 32 Q64 48 48 48 L32 48 Q16 48 16 64 Q16 80 32 80 L48 80" 
+            fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/>
+      <line x1="40" y1="8" x2="40" y2="24" stroke="white" stroke-width="8" stroke-linecap="round"/>
+      <line x1="40" y1="72" x2="40" y2="88" stroke="white" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <!-- Credit cards indication -->
+    <rect x="64" y="200" width="32" height="20" rx="2" fill="white" opacity="0.7"/>
+    <rect x="104" y="200" width="32" height="20" rx="2" fill="white" opacity="0.5"/>
+    <rect x="144" y="200" width="32" height="20" rx="2" fill="white" opacity="0.3"/>
+  </g>
+</svg>

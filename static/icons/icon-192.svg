@@ -1,0 +1,18 @@
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="192" height="192" rx="24" fill="#198754"/>
+  <g transform="translate(32, 32)">
+    <!-- Wallet outline -->
+    <rect x="16" y="32" width="96" height="72" rx="8" fill="none" stroke="white" stroke-width="4"/>
+    <!-- Wallet fold -->
+    <path d="M16 32 L24 24 L104 24 L112 32" fill="none" stroke="white" stroke-width="4" stroke-linejoin="round"/>
+    <!-- Card slot -->
+    <rect x="80" y="48" width="24" height="16" rx="4" fill="white"/>
+    <!-- Dollar sign -->
+    <g transform="translate(40, 60)">
+      <path d="M20 8 Q28 8 28 16 Q28 24 20 24 L12 24 Q4 24 4 32 Q4 40 12 40 L20 40" 
+            fill="none" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <line x1="16" y1="4" x2="16" y2="12" stroke="white" stroke-width="3" stroke-linecap="round"/>
+      <line x1="16" y1="36" x2="16" y2="44" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

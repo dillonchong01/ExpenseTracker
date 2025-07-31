@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block title %}Add Expense - Expense Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">
+                    <i class="fas fa-plus-circle text-success me-2"></i>
+                    Add New Expense
+                </h4>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('add_expense') }}" method="POST" id="addExpenseForm">
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <input type="number" class="form-control form-control-lg" id="amount" name="amount" 
+                                   step="0.01" min="0" required placeholder="0.00" autofocus>
+                            <label for="amount">
+                                <i class="fas fa-dollar-sign me-2"></i>Amount
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <div class="form-floating">
+                            <input type="text" class="form-control form-control-lg" id="description" name="description" 
+                                   required placeholder="Description" maxlength="200">
+                            <label for="description">
+                                <i class="fas fa-file-alt me-2"></i>Description
+                            </label>
+                        </div>
+                        <div class="form-text">
+                            <i class="fas fa-lightbulb me-1"></i>
+                            Be descriptive - this helps with automatic categorization
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="category" class="form-label">
+                            <i class="fas fa-tags me-2"></i>Category
+                        </label>
+                        <select class="form-select form-select-lg" id="category" name="category">
+                            <option value="">Let me suggest automatically</option>
+                            {% for cat in categories %}
+                                <option value="{{ cat }}">{{ cat }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="form-text">
+                            <span id="suggestedCategory" class="text-info"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-plus me-2"></i>Add Expense
+                        </button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Home
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Quick Category Buttons -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h6 class="card-title mb-3">
+                    <i class="fas fa-lightning-bolt me-2"></i>Quick Categories
+                </h6>
+                <div class="row g-2">
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100 quick-category" data-category="Food & Dining">
+                            <i class="fas fa-utensils me-1"></i>Food
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100 quick-category" data-category="Transportation">
+                            <i class="fas fa-car me-1"></i>Transport
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100 quick-category" data-category="Shopping">
+                            <i class="fas fa-shopping-bag me-1"></i>Shopping
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100 quick-category" data-category="Bills & Utilities">
+                            <i class="fas fa-file-invoice me-1"></i>Bills
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100 quick-category" data-category="Entertainment">
+                            <i class="fas fa-gamepad me-1"></i>Fun
+                        </button>
+                    </div>
+                    <div class="col-6 col-md-4">
+                        <button type="button" class="btn btn-outline-primary btn-sm w-100 quick-category" data-category="Healthcare">
+                            <i class="fas fa-heart me-1"></i>Health
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const descriptionInput = document.getElementById('description');
+    const categorySelect = document.getElementById('category');
+    const suggestedCategorySpan = document.getElementById('suggestedCategory');
+    const quickCategoryButtons = document.querySelectorAll('.quick-category');
+    
+    let debounceTimer;
+    
+    // Auto-suggest category based on description
+    descriptionInput.addEventListener('input', function() {
+        clearTimeout(debounceTimer);
+        const description = this.value.trim();
+        
+        if (description.length > 3) {
+            debounceTimer = setTimeout(() => {
+                fetch(`/api/suggest-category?description=${encodeURIComponent(description)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.category && categorySelect.value === '') {
+                            suggestedCategorySpan.innerHTML = `
+                                <i class="fas fa-magic me-1"></i>
+                                Suggested: <strong>${data.category}</strong>
+                            `;
+                        }
+                    })
+                    .catch(console.error);
+            }, 500);
+        } else {
+            suggestedCategorySpan.innerHTML = '';
+        }
+    });
+    
+    // Quick category selection
+    quickCategoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const category = this.dataset.category;
+            categorySelect.value = category;
+            suggestedCategorySpan.innerHTML = '';
+            
+            // Visual feedback
+            quickCategoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+    
+    // Form validation
+    document.getElementById('addExpenseForm').addEventListener('submit', function(e) {
+        const amount = parseFloat(document.getElementById('amount').value);
+        const description = document.getElementById('description').value.trim();
+        
+        if (amount <= 0) {
+            e.preventDefault();
+            alert('Please enter a valid amount greater than 0');
+            return;
+        }
+        
+        if (description.length < 2) {
+            e.preventDefault();
+            alert('Please enter a more descriptive description');
+            return;
+        }
+    });
+    
+    // Auto-format amount input
+    document.getElementById('amount').addEventListener('blur', function() {
+        if (this.value) {
+            this.value = parseFloat(this.value).toFixed(2);
+        }
+    });
+});
+</script>
+{% endblock %}
