@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -41,20 +40,20 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
   }
 
   return (
-    <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
-      <CardHeader className="pb-4">
-        <CardTitle className="flex items-center gap-2 text-[#6B9AC4]">
-          {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
-          {editingBudget ? "Edit Budget" : "Set New Budget"}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md mx-auto">
+      <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
+        <CardHeader className="pb-4">
+          <CardTitle className="flex items-center gap-2 text-[#6B9AC4]">
+            {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
+            {editingBudget ? "Edit Budget" : "Set New Budget"}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
           {/* Category */}
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
             <Select value={category} onValueChange={setCategory} required>
-              <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
+              <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
                 <SelectValue placeholder="Select Category" />
               </SelectTrigger>
               <SelectContent>
@@ -77,7 +76,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0"
-              className="border-[#CADBEB] focus:border-[#6B9AC4]"
+              className="w-full border-[#CADBEB] focus:border-[#6B9AC4]"
               required
             />
           </div>
@@ -86,7 +85,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
           <div className="space-y-2">
             <Label htmlFor="period">Period</Label>
             <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
-              <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
+              <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -112,8 +111,8 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
               </Button>
             )}
           </div>
-        </form>
-      </CardContent>
-    </Card>
+        </CardContent>
+      </Card>
+    </form>
   )
 }

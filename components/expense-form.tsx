@@ -82,7 +82,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
             Category
           </Label>
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
+            <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
             <SelectContent className="bg-popover border-border">
