@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -35,7 +34,6 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
       date,
     })
 
-    // Reset form if not editing
     if (!editingExpense) {
       setItemName("")
       setCategory("")
@@ -46,23 +44,20 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
 
   const handleItemNameChange = (value: string) => {
     setItemName(value)
-    // Auto-suggest category if not manually set
     if (!category && value) {
       const suggestedCategory = categorizeExpense(value)
-      if (suggestedCategory !== "Other") {
-        setCategory(suggestedCategory)
-      }
+      if (suggestedCategory !== "Other") setCategory(suggestedCategory)
     }
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mx-auto" style={{ width: "90%" }}>
       <div className="flex items-center gap-3 mb-6">
         {editingExpense ? <Edit3 className="h-6 w-6 text-primary" /> : <PlusCircle className="h-6 w-6 text-primary" />}
         <h2 className="text-2xl font-heading text-foreground">{editingExpense ? "Edit Expense" : "Add New Expense"}</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 w-full mx-auto">
         <div className="space-y-3">
           <Label htmlFor="itemName" className="text-sm font-body font-medium text-foreground">
             Item Name
@@ -72,12 +67,12 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
             value={itemName}
             onChange={(e) => handleItemNameChange(e.target.value)}
             placeholder="e.g., Matcha"
-            className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+            className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body w-full"
             required
           />
         </div>
 
-        <div className="mx-auto w-[90%] space-y-4">
+        <div className="space-y-3 w-full mx-auto">
           <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
             Category
           </Label>
@@ -107,7 +102,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0"
-              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body w-full"
               required
             />
           </div>
@@ -121,13 +116,13 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
-              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body w-full"
               required
             />
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 pt-4">
+        <div className="flex flex-col sm:flex-row gap-3 pt-4 w-full">
           <Button
             type="submit"
             className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
@@ -139,7 +134,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
               type="button"
               variant="outline"
               onClick={onCancelEdit}
-              className="border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground font-body font-medium transition-all duration-200"
+              className="border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground font-body font-medium transition-all duration-200 flex-1"
             >
               Cancel
             </Button>

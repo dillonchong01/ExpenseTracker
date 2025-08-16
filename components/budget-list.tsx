@@ -22,13 +22,11 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
 
     let startDate: Date
     if (budget.period === "weekly") {
-      // Get start of current week (Sunday)
       const dayOfWeek = now.getDay()
       startDate = new Date(now)
       startDate.setDate(now.getDate() - dayOfWeek)
       startDate.setHours(0, 0, 0, 0)
     } else {
-      // Get start of current month
       startDate = new Date(currentYear, currentMonth, 1)
     }
 
@@ -62,7 +60,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
 
   if (budgets.length === 0) {
     return (
-      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20 w-full" style={{ maxWidth: "90%", margin: "0 auto" }}>
+      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20 mx-auto" style={{ width: "90%" }}>
         <CardContent className="py-12 text-center">
           <Target className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
           <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No budgets set</h3>
@@ -74,7 +72,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
 
   return (
     <div className="space-y-4 mx-auto" style={{ width: "90%" }}>
-      <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30">
+      <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30 w-full">
         <CardHeader className="pb-3">
           <CardTitle className="text-[#6B9AC4] text-lg">Budget Overview</CardTitle>
         </CardHeader>
@@ -93,12 +91,12 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
           const { status, color, icon: StatusIcon } = getBudgetStatus(spent, budget.amount)
 
           return (
-            <Card key={budget.id} className="bg-card hover:bg-[#A7C7E7]/5 transition-colors">
+            <Card key={budget.id} className="bg-card hover:bg-[#A7C7E7]/5 transition-colors w-full">
               <CardContent className="p-4">
                 <div className="space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-2">
+                      <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <Badge variant="outline" className={getCategoryColor(budget.category)}>
                           {budget.category}
                         </Badge>
@@ -140,7 +138,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
                     </div>
                     <Progress
                       value={percentage}
-                      className="h-2"
+                      className="h-2 w-full"
                       style={{
                         background: "#CADBEB",
                       }}

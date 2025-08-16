@@ -38,7 +38,7 @@ export function ExpenseList({ expenses, onEdit, onDelete }: ExpenseListProps) {
 
   if (expenses.length === 0) {
     return (
-      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20">
+      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20" style={{ width: "90%", margin: "0 auto" }}>
         <CardContent className="py-12 text-center">
           <Receipt className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
           <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No expenses yet</h3>
@@ -49,8 +49,8 @@ export function ExpenseList({ expenses, onEdit, onDelete }: ExpenseListProps) {
   }
 
   return (
-    <div className="mx-auto w-[90%] space-y-4">
-      <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30">
+    <div className="space-y-4" style={{ width: "90%", margin: "0 auto" }}>
+      <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30" style={{ width: "100%" }}>
         <CardHeader className="pb-3">
           <CardTitle className="text-[#6B9AC4] text-lg">Total Expenses: ${totalAmount.toFixed(2)}</CardTitle>
         </CardHeader>
@@ -58,7 +58,7 @@ export function ExpenseList({ expenses, onEdit, onDelete }: ExpenseListProps) {
 
       <div className="space-y-3">
         {expenses.map((expense) => (
-          <Card key={expense.id} className="bg-card hover:bg-[#A7C7E7]/5 transition-colors">
+          <Card key={expense.id} className="bg-card hover:bg-[#A7C7E7]/5 transition-colors" style={{ width: "100%" }}>
             <CardContent className="p-4">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1 min-w-0">
