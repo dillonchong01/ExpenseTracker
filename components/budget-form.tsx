@@ -1,0 +1,117 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { categoryKeywords, type Budget } from "@/lib/firebase"
+import { Target, Edit3 } from "lucide-react"
+
+interface BudgetFormProps {
+  onSubmit: (budget: Omit<Budget, "id" | "createdAt">) => void
+  editingBudget?: Budget | null
+  onCancelEdit?: () => void
+}
+
+export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetFormProps) {
+  const [category, setCategory] = useState(editingBudget?.category || "")
+  const [amount, setAmount] = useState(editingBudget?.amount?.toString() || "")
+  const [period, setPeriod] = useState<"weekly" | "monthly">(editingBudget?.period || "monthly")
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!category || !amount) return
+
+    onSubmit({
+      category,
+      amount: Number.parseFloat(amount),
+      period,
+    })
+
+    // Reset form if not editing
+    if (!editingBudget) {
+      setCategory("")
+      setAmount("")
+      setPeriod("monthly")
+    }
+  }
+
+  return (
+    <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
+      <CardHeader className="pb-4">
+        <CardTitle className="flex items-center gap-2 text-[#6B9AC4]">
+          {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
+          {editingBudget ? "Edit Budget" : "Set New Budget"}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <Select value={category} onValueChange={setCategory} required>
+              <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
+                <SelectValue placeholder="Select category" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(categoryKeywords).map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="amount">Budget Amount ($)</Label>
+              <Input
+                id="amount"
+                type="number"
+                step="0.01"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                placeholder="0.00"
+                className="border-[#CADBEB] focus:border-[#6B9AC4]"
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="period">Period</Label>
+              <Select value={period} onValueChange={(value: "weekly" | "monthly") => setPeriod(value)}>
+                <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="weekly">Weekly</SelectItem>
+                  <SelectItem value="monthly">Monthly</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="flex gap-2 pt-2">
+            <Button type="submit" className="flex-1 bg-[#6B9AC4] hover:bg-[#6B9AC4]/90">
+              {editingBudget ? "Update Budget" : "Set Budget"}
+            </Button>
+            {editingBudget && onCancelEdit && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onCancelEdit}
+                className="border-[#CADBEB] bg-transparent"
+              >
+                Cancel
+              </Button>
+            )}
+          </div>
+        </form>
+      </CardContent>
+    </Card>
+  )
+}
