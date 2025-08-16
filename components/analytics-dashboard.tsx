@@ -79,7 +79,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
 
   if (expenses.length === 0) {
     return (
-      <div className="w-4/5 mx-auto py-6 pb-20 md:pb-6">
+      <div className="mx-auto py-6 pb-20 md:pb-6" style={{ width: "90%" }}>
         <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20">
           <CardContent className="py-12 text-center">
             <BarChart3 className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
@@ -92,7 +92,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
   }
 
   return (
-    <div className="w-4/5 mx-auto py-6 pb-20 md:pb-6 space-y-6">
+    <div className="mx-auto py-6 pb-20 md:pb-6 space-y-6" style={{ width: "90%" }}>
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30">
@@ -163,9 +163,19 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
                   outerRadius="45%"
                   fill="#6B9AC4"
                   dataKey="amount"
-                  label={({ category, percentage }) => `${category} (${percentage}%)`}
+                  label={({ cx, cy, midAngle, innerRadius, outerRadius, percent, category }) => {
+                    const RADIAN = Math.PI / 180
+                    const radius = innerRadius + (outerRadius - innerRadius) * 1.2
+                    const x = cx + radius * Math.cos(-midAngle * RADIAN)
+                    const y = cy + radius * Math.sin(-midAngle * RADIAN)
+
+                    return (
+                      <text x={x} y={y} fill="#6B9AC4" textAnchor={x > cx ? "start" : "end"} dominantBaseline="central" fontSize={10}>
+                        {`${category} (${percent.toFixed(1)}%)`}
+                      </text>
+                    )
+                  }}
                   labelLine={true}
-                  labelStyle={{ fontSize: 10 }}
                 >
                   {analytics.categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={categoryColors[index % categoryColors.length]} />

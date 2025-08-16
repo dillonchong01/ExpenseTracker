@@ -81,7 +81,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
   }, [expenses, weeklyCategory])
 
   return (
-    <div className="w-4/5 mx-auto py-6 pb-20 md:pb-6 space-y-6">
+    <div className="mx-auto py-6 pb-20 md:pb-6 space-y-6" style={{ width: "90%" }}>
       {/* 8-Week Spending Trend */}
       <Card>
         <CardHeader>
