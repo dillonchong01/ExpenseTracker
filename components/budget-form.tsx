@@ -41,7 +41,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
 
   return (
     <div className="mx-auto py-6" style={{ width: "90%" }}>
-      <form onSubmit={handleSubmit} className="space-y-4 w-full">
+      <form onSubmit={handleSubmit} className="w-full">
         <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-[#6B9AC4]">
@@ -49,9 +49,9 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
               {editingBudget ? "Edit Budget" : "Set New Budget"}
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="w-full px-0">
             {/* Category */}
-            <div className="space-y-2 w-full">
+            <div className="mb-4 w-full">
               <Label htmlFor="category">Category</Label>
               <Select value={category} onValueChange={setCategory} required>
                 <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
@@ -67,8 +67,8 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
               </Select>
             </div>
 
-            {/* Budget Amount */}
-            <div className="space-y-2 w-full">
+            {/* Amount */}
+            <div className="mb-4 w-full">
               <Label htmlFor="amount">Budget Amount ($)</Label>
               <Input
                 id="amount"
@@ -83,7 +83,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
             </div>
 
             {/* Period */}
-            <div className="space-y-2 w-full">
+            <div className="mb-4 w-full">
               <Label htmlFor="period">Period</Label>
               <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
                 <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
