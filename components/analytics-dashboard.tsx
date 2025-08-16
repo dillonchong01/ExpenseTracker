@@ -165,7 +165,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
                   dataKey="amount"
                   label={({ category, percentage }) => `${category} (${percentage}%)`}
                   labelLine={true}
-                  className="md:text-sm"
+                  labelStyle={{ fontSize: 10 }}
                 >
                   {analytics.categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={categoryColors[index % categoryColors.length]} />
