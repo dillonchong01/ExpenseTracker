@@ -85,7 +85,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
       {/* 8-Week Spending Trend */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2">
             <div>
               <CardTitle>8-Week Spending Trend</CardTitle>
               <CardDescription>Weekly Spending over Last 8 Weeks</CardDescription>
@@ -122,7 +122,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
       {/* 6-Month Spending Trend */}
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2">
             <div>
               <CardTitle>6-Month Spending Trend</CardTitle>
               <CardDescription>Historical Spending over Last 6 Months</CardDescription>
