@@ -42,16 +42,17 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
   return (
     <div className="mx-auto py-6" style={{ width: "90%" }}>
       <form onSubmit={handleSubmit} className="w-full">
-        <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
-          <CardHeader className="pb-4">
-            <CardTitle className="flex items-center gap-2 text-[#6B9AC4]">
+        <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30 p-0">
+          <CardHeader className="p-0">
+            <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0">
               {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
               {editingBudget ? "Edit Budget" : "Set New Budget"}
             </CardTitle>
           </CardHeader>
-          <CardContent className="w-full px-0">
+
+          <CardContent className="p-0 m-0 w-full">
             {/* Category */}
-            <div className="mb-4 w-full">
+            <div className="w-full mb-4">
               <Label htmlFor="category">Category</Label>
               <Select value={category} onValueChange={setCategory} required>
                 <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
@@ -68,7 +69,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
             </div>
 
             {/* Amount */}
-            <div className="mb-4 w-full">
+            <div className="w-full mb-4">
               <Label htmlFor="amount">Budget Amount ($)</Label>
               <Input
                 id="amount"
@@ -83,7 +84,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
             </div>
 
             {/* Period */}
-            <div className="mb-4 w-full">
+            <div className="w-full mb-4">
               <Label htmlFor="period">Period</Label>
               <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
                 <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
