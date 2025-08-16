@@ -208,7 +208,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
                 <BarChart data={analytics.budgetComparison} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
                   <XAxis dataKey="category" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
-                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} />
+                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30}/>
                   <ChartTooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
