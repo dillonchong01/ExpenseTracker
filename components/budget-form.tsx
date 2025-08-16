@@ -40,7 +40,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-4 mx-auto" style={{ width: "90%" }}>
       <Card className="bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
         <CardHeader className="pb-4">
           <CardTitle className="flex items-center gap-2 text-[#6B9AC4]">

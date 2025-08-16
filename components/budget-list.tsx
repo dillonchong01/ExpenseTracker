@@ -62,7 +62,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
 
   if (budgets.length === 0) {
     return (
-      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20">
+      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20 w-full" style={{ maxWidth: "90%", margin: "0 auto" }}>
         <CardContent className="py-12 text-center">
           <Target className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
           <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No budgets set</h3>
@@ -73,7 +73,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 mx-auto" style={{ width: "90%" }}>
       <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30">
         <CardHeader className="pb-3">
           <CardTitle className="text-[#6B9AC4] text-lg">Budget Overview</CardTitle>

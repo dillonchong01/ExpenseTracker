@@ -77,7 +77,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
           />
         </div>
 
-        <div className="space-y-3">
+        <div className="mx-auto w-[90%] space-y-4">
           <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
             Category
           </Label>
