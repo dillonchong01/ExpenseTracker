@@ -90,7 +90,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>8-Week Spending Trend</CardTitle>
-              <CardDescription>Weekly spending patterns over the last 8 weeks</CardDescription>
+              <CardDescription>Weekly Spending over Last 8 Weeks</CardDescription>
             </div>
             <Select value={weeklyCategory} onValueChange={setWeeklyCategory}>
               <SelectTrigger className="w-40">
@@ -150,7 +150,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>6-Month Spending Trend</CardTitle>
-              <CardDescription>Historical spending patterns over the last 6 months</CardDescription>
+              <CardDescription>Historical Spending over Last 6 Months</CardDescription>
             </div>
             <Select value={sixMonthCategory} onValueChange={setSixMonthCategory}>
               <SelectTrigger className="w-40">

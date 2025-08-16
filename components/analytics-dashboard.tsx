@@ -204,10 +204,10 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
           <CardContent>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={analytics.budgetComparison} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                <BarChart data={analytics.budgetComparison} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
                   <XAxis dataKey="category" stroke="#6B9AC4" />
-                  <YAxis stroke="#6B9AC4" />
+                  <YAxis stroke="#6B9AC4" width={30} />
                   <ChartTooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
