@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
 import { ResponsiveContainer, Bar, BarChart, XAxis, YAxis, CartesianGrid } from "recharts"
 import type { Expense, Budget } from "@/lib/firebase"
 
@@ -22,7 +21,6 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
   }, [expenses])
 
   const sixMonthTrends = useMemo(() => {
-    // Get last 6 months of data
     const now = new Date()
     const months = []
 
@@ -50,7 +48,6 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
   }, [expenses, sixMonthCategory])
 
   const weeklyTrends = useMemo(() => {
-    // Get last 8 weeks of data
     const weeks = []
     const now = new Date()
 
@@ -58,7 +55,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
       const weekStart = new Date(now)
       weekStart.setDate(now.getDate() - i * 7)
       const dayOfWeek = weekStart.getDay()
-      const daysToMonday = (dayOfWeek + 6) % 7 // Convert to Monday-based week
+      const daysToMonday = (dayOfWeek + 6) % 7
       weekStart.setDate(weekStart.getDate() - daysToMonday)
 
       const weekEnd = new Date(weekStart)
@@ -85,6 +82,7 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
 
   return (
     <div className="w-4/5 mx-auto py-6 pb-20 md:pb-6 space-y-6">
+      {/* 8-Week Spending Trend */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -108,43 +106,20 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="w-full px-4">
-            <ChartContainer
-              config={{
-                totalSpent: {
-                  label: "Weekly Spent",
-                  color: "#A7C7E7",
-                },
-              }}
-              className="h-[300px] w-full overflow-hidden"
-            >
-              <ResponsiveContainer width="85%" height="100%">
-                <BarChart data={weeklyTrends} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
-                  <XAxis dataKey="week" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
-                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30} />
-                  <ChartTooltip
-                    content={({ active, payload, label }) => {
-                      if (active && payload && payload.length) {
-                        const data = payload[0].payload
-                        return (
-                          <div className="bg-background border rounded-lg p-3 shadow-lg">
-                            <p className="font-medium">Week of {label}</p>
-                            <p className="text-[#6B9AC4]">Weekly Spent: ${data.totalSpent.toFixed(2)}</p>
-                          </div>
-                        )
-                      }
-                      return null
-                    }}
-                  />
-                  <Bar dataKey="totalSpent" fill="#A7C7E7" />
-                </BarChart>
-              </ResponsiveContainer>
-            </ChartContainer>
+          <div className="w-full px-4 h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={weeklyTrends} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
+                <XAxis dataKey="week" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
+                <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30} />
+                <Bar dataKey="totalSpent" fill="#A7C7E7" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </CardContent>
       </Card>
 
+      {/* 6-Month Spending Trend */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
@@ -168,39 +143,15 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="w-full px-4">
-            <ChartContainer
-              config={{
-                totalSpent: {
-                  label: "Total Spent",
-                  color: "#6B9AC4",
-                },
-              }}
-              className="h-[300px] w-full overflow-hidden"
-            >
-              <ResponsiveContainer width="85%" height="100%">
-                <BarChart data={sixMonthTrends} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
-                  <XAxis dataKey="month" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
-                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30} />
-                  <ChartTooltip
-                    content={({ active, payload, label }) => {
-                      if (active && payload && payload.length) {
-                        const data = payload[0].payload
-                        return (
-                          <div className="bg-background border rounded-lg p-3 shadow-lg">
-                            <p className="font-medium">{label}</p>
-                            <p className="text-[#6B9AC4]">Total Spent: ${data.totalSpent.toFixed(2)}</p>
-                          </div>
-                        )
-                      }
-                      return null
-                    }}
-                  />
-                  <Bar dataKey="totalSpent" fill="#6B9AC4" />
-                </BarChart>
-              </ResponsiveContainer>
-            </ChartContainer>
+          <div className="w-full px-4 h-[300px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={sixMonthTrends} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
+                <XAxis dataKey="month" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
+                <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30} />
+                <Bar dataKey="totalSpent" fill="#6B9AC4" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </CardContent>
       </Card>
