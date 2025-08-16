@@ -153,18 +153,19 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-80">
+          <div className="h-80 md:h-96">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
                   data={analytics.categoryData}
                   cx="50%"
                   cy="50%"
-                  outerRadius={100}
+                  outerRadius="45%"
                   fill="#6B9AC4"
                   dataKey="amount"
-                  label={({ category, percentage }) => `${category}: ${percentage}%`}
-                  labelLine={false}
+                  label={({ category, percentage }) => `${category} (${percentage}%)`}
+                  labelLine={true}
+                  className="md:text-sm"
                 >
                   {analytics.categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={categoryColors[index % categoryColors.length]} />
@@ -206,8 +207,8 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={analytics.budgetComparison} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
-                  <XAxis dataKey="category" stroke="#6B9AC4" />
-                  <YAxis stroke="#6B9AC4" width={30} />
+                  <XAxis dataKey="category" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
+                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} />
                   <ChartTooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {

@@ -121,8 +121,8 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
               <ResponsiveContainer width="85%" height="100%">
                 <BarChart data={weeklyTrends} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
-                  <XAxis dataKey="week" stroke="#6B9AC4" />
-                  <YAxis stroke="#6B9AC4" width={30} />
+                  <XAxis dataKey="week" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
+                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30} />
                   <ChartTooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
@@ -181,8 +181,8 @@ export function TrendsDashboard({ expenses, budgets }: TrendsDashboardProps) {
               <ResponsiveContainer width="85%" height="100%">
                 <BarChart data={sixMonthTrends} margin={{ top: 10, right: 10, left: 0, bottom: 10 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#CADBEB" />
-                  <XAxis dataKey="month" stroke="#6B9AC4" />
-                  <YAxis stroke="#6B9AC4" width={30} />
+                  <XAxis dataKey="month" tick={{ fill: "#6B9AC4", fontSize: 12 }} />
+                  <YAxis tick={{ fill: "#6B9AC4", fontSize: 12 }} width={30} />
                   <ChartTooltip
                     content={({ active, payload, label }) => {
                       if (active && payload && payload.length) {
