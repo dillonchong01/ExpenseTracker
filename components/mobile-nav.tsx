@@ -16,7 +16,7 @@ export function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
   const tabs = [
     { id: "expenses", label: "Expenses", icon: PlusCircle },
     { id: "budgets", label: "Budgets", icon: Target },
-    { id: "analytics", label: "Monthly Analytics", icon: PieChart },
+    { id: "analytics", label: "Analytics", icon: PieChart },
     { id: "trends", label: "Trends", icon: TrendingUp },
   ]
 
