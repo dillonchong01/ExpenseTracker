@@ -20,7 +20,7 @@ interface BudgetFormProps {
 export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetFormProps) {
   const [category, setCategory] = useState(editingBudget?.category || "")
   const [amount, setAmount] = useState(editingBudget?.amount?.toString() || "")
-  const [period, setPeriod] = useState<"weekly" | "monthly">(editingBudget?.period || "monthly")
+  const [period, setPeriod] = useState<"Weekly" | "Monthly">(editingBudget?.period || "Monthly")
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -36,7 +36,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
     if (!editingBudget) {
       setCategory("")
       setAmount("")
-      setPeriod("monthly")
+      setPeriod("Monthly")
     }
   }
 
@@ -50,11 +50,12 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Category */}
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
             <Select value={category} onValueChange={setCategory} required>
               <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
-                <SelectValue placeholder="Select category" />
+                <SelectValue placeholder="Select Category" />
               </SelectTrigger>
               <SelectContent>
                 {Object.keys(categoryKeywords).map((cat) => (
@@ -66,35 +67,36 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
             </Select>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="amount">Budget Amount ($)</Label>
-              <Input
-                id="amount"
-                type="number"
-                step="0.01"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="0.00"
-                className="border-[#CADBEB] focus:border-[#6B9AC4]"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="period">Period</Label>
-              <Select value={period} onValueChange={(value: "weekly" | "monthly") => setPeriod(value)}>
-                <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="weekly">Weekly</SelectItem>
-                  <SelectItem value="monthly">Monthly</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Budget Amount */}
+          <div className="space-y-2">
+            <Label htmlFor="amount">Budget Amount ($)</Label>
+            <Input
+              id="amount"
+              type="number"
+              step="0.01"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="0"
+              className="border-[#CADBEB] focus:border-[#6B9AC4]"
+              required
+            />
           </div>
 
+          {/* Period */}
+          <div className="space-y-2">
+            <Label htmlFor="period">Period</Label>
+            <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
+              <SelectTrigger className="border-[#CADBEB] focus:border-[#6B9AC4]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Weekly">Weekly</SelectItem>
+                <SelectItem value="Monthly">Monthly</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Buttons */}
           <div className="flex gap-2 pt-2">
             <Button type="submit" className="flex-1 bg-[#6B9AC4] hover:bg-[#6B9AC4]/90">
               {editingBudget ? "Update Budget" : "Set Budget"}

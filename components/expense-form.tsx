@@ -71,7 +71,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
             id="itemName"
             value={itemName}
             onChange={(e) => handleItemNameChange(e.target.value)}
-            placeholder="e.g., Coffee at Starbucks"
+            placeholder="e.g., Matcha"
             className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
             required
           />
@@ -83,7 +83,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
           </Label>
           <Select value={category} onValueChange={setCategory}>
             <SelectTrigger className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
-              <SelectValue placeholder="Auto-categorized" />
+              <SelectValue placeholder="Select Category" />
             </SelectTrigger>
             <SelectContent className="bg-popover border-border">
               {Object.keys(categoryKeywords).map((cat) => (
@@ -106,7 +106,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
               step="0.01"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
-              placeholder="0.00"
+              placeholder="0"
               className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
               required
             />

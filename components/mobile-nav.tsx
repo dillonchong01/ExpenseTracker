@@ -50,7 +50,7 @@ export function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                   <Button
                     key={tab.id}
                     variant={activeTab === tab.id ? "default" : "ghost"}
-                    className={`flex flex-col gap-2 h-auto py-4 font-body transition-all duration-200 ${
+                    className={`flex flex-col gap-2 h-auto py-4 font-body min-w-0 transition-all duration-200 ${
                       activeTab === tab.id
                         ? "bg-primary text-primary-foreground shadow-lg scale-105"
                         : "hover:bg-primary/10 hover:scale-102"
@@ -61,7 +61,7 @@ export function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                     }}
                   >
                     <Icon className="h-6 w-6" />
-                    <span className="text-sm font-medium">{tab.label}</span>
+                    <span className="text-sm font-medium truncate">{tab.label}</span>
                   </Button>
                 )
               })}
@@ -80,13 +80,13 @@ export function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                 key={tab.id}
                 variant={activeTab === tab.id ? "default" : "ghost"}
                 size="sm"
-                className={`flex flex-col gap-1 h-auto py-3 px-4 font-body transition-all duration-200 ${
+                className={`flex flex-col gap-1 h-auto py-3 px-4 font-body min-w-0 transition-all duration-200 ${
                   activeTab === tab.id ? "bg-primary text-primary-foreground shadow-md" : "hover:bg-primary/10"
                 }`}
                 onClick={() => onTabChange(tab.id)}
               >
                 <Icon className="h-5 w-5" />
-                <span className="text-xs font-medium">{tab.label}</span>
+                <span className="text-xs font-medium truncate">{tab.label}</span>
               </Button>
             )
           })}
@@ -104,7 +104,7 @@ export function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                 <Button
                   key={tab.id}
                   variant={activeTab === tab.id ? "default" : "ghost"}
-                  className={`w-full justify-start gap-4 py-3 px-4 font-body transition-all duration-200 ${
+                  className={`w-full justify-start gap-4 py-3 px-4 font-body transition-all duration-200 min-w-0 ${
                     activeTab === tab.id
                       ? "bg-primary text-primary-foreground shadow-lg scale-105"
                       : "hover:bg-primary/10 hover:scale-102"
@@ -112,7 +112,7 @@ export function MobileNav({ activeTab, onTabChange }: MobileNavProps) {
                   onClick={() => onTabChange(tab.id)}
                 >
                   <Icon className="h-5 w-5" />
-                  <span className="font-medium">{tab.label}</span>
+                  <span className="font-medium truncate">{tab.label}</span>
                 </Button>
               )
             })}
