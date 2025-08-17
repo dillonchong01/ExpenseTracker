@@ -42,7 +42,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
     <form onSubmit={handleSubmit} className="w-full">
       <Card className="w-full bg-[#FFFFFF]">
         <CardHeader className="py-3">
-          <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0">
+          <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0 text-2xl font-heading">
             {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
             {editingBudget ? "Edit Budget" : "Set New Budget"}
           </CardTitle>
