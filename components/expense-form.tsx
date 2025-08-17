@@ -1,74 +1,105 @@
 "use client"
 
 import type React from "react"
+
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { categoryKeywords, type Budget } from "@/lib/firebase"
-import { Target, Edit3 } from "lucide-react"
+import { categorizeExpense, categoryKeywords, type Expense } from "@/lib/firebase"
+import { PlusCircle, Edit3 } from "lucide-react"
 
-interface BudgetFormProps {
-  onSubmit: (budget: Omit<Budget, "id" | "createdAt">) => void
-  editingBudget?: Budget | null
+interface ExpenseFormProps {
+  onSubmit: (expense: Omit<Expense, "id" | "createdAt">) => void
+  editingExpense?: Expense | null
   onCancelEdit?: () => void
 }
 
-export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetFormProps) {
-  const [category, setCategory] = useState(editingBudget?.category || "")
-  const [amount, setAmount] = useState(editingBudget?.amount?.toString() || "")
-  const [period, setPeriod] = useState<"Weekly" | "Monthly">(editingBudget?.period || "Monthly")
+export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseFormProps) {
+  const [itemName, setItemName] = useState(editingExpense?.itemName || "")
+  const [category, setCategory] = useState(editingExpense?.category || "")
+  const [amount, setAmount] = useState(editingExpense?.amount?.toString() || "")
+  const [date, setDate] = useState(editingExpense?.date || new Date().toISOString().split("T")[0])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!category || !amount) return
+    if (!itemName || !amount || !date) return
+
+    const finalCategory = category || categorizeExpense(itemName)
 
     onSubmit({
-      category,
+      itemName,
+      category: finalCategory,
       amount: Number.parseFloat(amount),
-      period,
+      date,
     })
 
-    if (!editingBudget) {
+    // Reset form if not editing
+    if (!editingExpense) {
+      setItemName("")
       setCategory("")
       setAmount("")
-      setPeriod("Monthly")
+      setDate(new Date().toISOString().split("T")[0])
+    }
+  }
+
+  const handleItemNameChange = (value: string) => {
+    setItemName(value)
+    // Auto-suggest category if not manually set
+    if (!category && value) {
+      const suggestedCategory = categorizeExpense(value)
+      if (suggestedCategory !== "Other") {
+        setCategory(suggestedCategory)
+      }
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <Card className="w-full bg-[#A7C7E7]/10 border-[#A7C7E7]/30">
-        <CardHeader className="py-4">
-          <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0">
-            {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
-            {editingBudget ? "Edit Budget" : "Set New Budget"}
-          </CardTitle>
-        </CardHeader>
+    <div className="space-y-4">
+      <div className="flex items-center gap-3 mb-6">
+        {editingExpense ? <Edit3 className="h-6 w-6 text-primary" /> : <PlusCircle className="h-6 w-6 text-primary" />}
+        <h2 className="text-2xl font-heading text-foreground">{editingExpense ? "Edit Expense" : "Add New Expense"}</h2>
+      </div>
 
-        <CardContent className="w-full space-y-5">
-          {/* Category */}
-          <div className="space-y-2">
-            <Label htmlFor="category">Category</Label>
-            <Select value={category} onValueChange={setCategory} required>
-              <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
-                <SelectValue placeholder="Select Category" />
-              </SelectTrigger>
-              <SelectContent>
-                {Object.keys(categoryKeywords).map((cat) => (
-                  <SelectItem key={cat} value={cat}>
-                    {cat}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-2">
+          <Label htmlFor="itemName" className="text-sm font-body font-medium text-foreground">
+            Item Name
+          </Label>
+          <Input
+            id="itemName"
+            value={itemName}
+            onChange={(e) => handleItemNameChange(e.target.value)}
+            placeholder="e.g., Matcha"
+            className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+            required
+          />
+        </div>
 
-          {/* Amount */}
+        <div className="space-y-2">
+          <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
+            Category
+          </Label>
+          <Select value={category} onValueChange={setCategory}>
+            <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
+              <SelectValue placeholder="Select Category" />
+            </SelectTrigger>
+            <SelectContent className="bg-popover border-border">
+              {Object.keys(categoryKeywords).map((cat) => (
+                <SelectItem key={cat} value={cat} className="font-body">
+                  {cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="amount">Budget Amount ($)</Label>
+            <Label htmlFor="amount" className="text-sm font-body font-medium text-foreground">
+              Amount ($)
+            </Label>
             <Input
               id="amount"
               type="number"
@@ -76,43 +107,45 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="0"
-              className="w-full border-[#CADBEB] focus:border-[#6B9AC4]"
+              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
               required
             />
           </div>
 
-          {/* Period */}
-          <div className="space-y-2">
-            <Label htmlFor="period">Period</Label>
-            <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
-              <SelectTrigger className="w-full border-[#CADBEB] focus:border-[#6B9AC4]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Weekly">Weekly</SelectItem>
-                <SelectItem value="Monthly">Monthly</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="space-y-3y">
+            <Label htmlFor="date" className="text-sm font-body font-medium text-foreground">
+              Date
+            </Label>
+            <Input
+              id="date"
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+              required
+            />
           </div>
+        </div>
 
-          {/* Buttons */}
-          <div className="flex gap-2 pt-4">
-            <Button type="submit" className="flex-1 bg-[#6B9AC4] hover:bg-[#6B9AC4]/90">
-              {editingBudget ? "Update Budget" : "Set Budget"}
+        <div className="flex flex-col sm:flex-row gap-3 pt-4">
+          <Button
+            type="submit"
+            className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            {editingExpense ? "Update Expense" : "Add Expense"}
+          </Button>
+          {editingExpense && onCancelEdit && (
+            <Button
+              type="button"
+              variant="outline"
+              onClick={onCancelEdit}
+              className="border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground font-body font-medium transition-all duration-200"
+            >
+              Cancel
             </Button>
-            {editingBudget && onCancelEdit && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={onCancelEdit}
-                className="border-[#CADBEB] bg-transparent"
-              >
-                Cancel
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </form>
+          )}
+        </div>
+      </form>
+    </div>
   )
 }
