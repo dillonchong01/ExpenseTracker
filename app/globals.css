@@ -130,10 +130,9 @@
 
   /* Added modern gradient background and typography utilities */
   .gradient-bg {
-    background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 50%, #a0d3e8 100%);
+    background: linear-gradient(135deg, #a0d3e8 0%, #ffb6b9 50%, #d8b4fe 100%);
     min-height: 100vh;
   }
-
   .glass-card {
     @apply backdrop-blur-sm bg-white/80 border border-white/20 shadow-xl;
   }
