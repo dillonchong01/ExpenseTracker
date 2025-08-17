@@ -75,7 +75,7 @@ export default function ExpenseManager() {
     switch (activeTab) {
       case "expenses":
         return (
-          <div className="w-4/5 mx-auto py-8 pb-24 md:pb-8 space-y-8">
+          <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
             <div className="glass-card p-6 modern-shadow rounded-xl border-white/30">
               <ExpenseForm
                 onSubmit={handleSubmitExpense}
@@ -90,7 +90,7 @@ export default function ExpenseManager() {
         )
       case "budgets":
         return (
-          <div className="w-4/5 mx-auto py-8 pb-24 md:pb-8 space-y-8">
+          <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
             <div className="glass-card p-6 modern-shadow rounded-xl border-white/30">
               <BudgetForm
                 onSubmit={handleSubmitBudget}

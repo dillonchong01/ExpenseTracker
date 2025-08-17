@@ -60,7 +60,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
 
   if (budgets.length === 0) {
     return (
-      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20 w-[90%] mx-auto">
+      <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20">
         <CardContent className="py-12 text-center">
           <Target className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
           <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No budgets set</h3>
