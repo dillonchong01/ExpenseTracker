@@ -26,7 +26,7 @@ export interface Budget {
   id: string
   category: string
   amount: number
-  period: "weekly" | "monthly"
+  period: "Weekly" | "Monthly"
   createdAt: string
 }
 

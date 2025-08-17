@@ -21,7 +21,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
     const currentYear = now.getFullYear()
 
     let startDate: Date
-    if (budget.period === "weekly") {
+    if (budget.period === "Weekly") {
       const dayOfWeek = now.getDay()
       startDate = new Date(now)
       startDate.setDate(now.getDate() - dayOfWeek)
@@ -73,7 +73,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
   return (
     <div className="space-y-4 w-[90%] mx-auto">
       <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30 w-full">
-        <CardHeader className="pb-3">
+        <CardHeader className="pb-1">
           <CardTitle className="text-[#6B9AC4] text-lg">Budget Overview</CardTitle>
         </CardHeader>
         <CardContent>
