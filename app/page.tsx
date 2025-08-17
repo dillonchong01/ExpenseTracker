@@ -91,11 +91,13 @@ export default function ExpenseManager() {
       case "budgets":
         return (
           <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
-            <BudgetForm
-              onSubmit={handleSubmitBudget}
-              editingBudget={editingBudget}
-              onCancelEdit={handleCancelEditBudget}
-            />
+            <div className="glass-card p-6 modern-shadow rounded-xl border-white/30">
+              <BudgetForm
+                onSubmit={handleSubmitBudget}
+                editingBudget={editingBudget}
+                onCancelEdit={handleCancelEditBudget}
+              />
+            </div>
             <div className="glass-card p-6 modern-shadow rounded-xl border-white/30">
               <BudgetList
                 budgets={budgets}
