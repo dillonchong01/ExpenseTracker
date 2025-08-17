@@ -39,7 +39,8 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="space-y-4">
+      {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         {editingBudget ? <Edit3 className="h-6 w-6 text-primary" /> : <Target className="h-6 w-6 text-primary" />}
         <h2 className="text-2xl font-heading text-foreground">
@@ -47,81 +48,80 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
         </h2>
       </div>
 
-      <Card className="w-full bg-card">
-        <CardContent className="space-y-5">
-          {/* Category */}
-          <div className="space-y-2">
-            <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
-              Category
-            </Label>
-            <Select value={category} onValueChange={setCategory} required>
-              <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
-                <SelectValue placeholder="Select Category" />
-              </SelectTrigger>
-              <SelectContent className="bg-popover border-border">
-                {Object.keys(categoryKeywords).map((cat) => (
-                  <SelectItem key={cat} value={cat} className="font-body">
-                    {cat}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Category */}
+        <div className="space-y-2">
+          <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
+            Category
+          </Label>
+          <Select value={category} onValueChange={setCategory} required>
+            <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
+              <SelectValue placeholder="Select Category" />
+            </SelectTrigger>
+            <SelectContent className="bg-popover border-border">
+              {Object.keys(categoryKeywords).map((cat) => (
+                <SelectItem key={cat} value={cat} className="font-body">
+                  {cat}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
 
-          {/* Amount */}
-          <div className="space-y-2">
-            <Label htmlFor="amount" className="text-sm font-body font-medium text-foreground">
-              Budget Amount ($)
-            </Label>
-            <Input
-              id="amount"
-              type="number"
-              step="0.01"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="0"
-              className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
-              required
-            />
-          </div>
+        {/* Amount */}
+        <div className="space-y-2">
+          <Label htmlFor="amount" className="text-sm font-body font-medium text-foreground">
+            Budget Amount ($)
+          </Label>
+          <Input
+            id="amount"
+            type="number"
+            step="0.01"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder="0"
+            className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+            required
+          />
+        </div>
 
-          {/* Period */}
-          <div className="space-y-2">
-            <Label htmlFor="period" className="text-sm font-body font-medium text-foreground">
-              Period
-            </Label>
-            <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
-              <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="bg-popover border-border">
-                <SelectItem value="Weekly">Weekly</SelectItem>
-                <SelectItem value="Monthly">Monthly</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+        {/* Period */}
+        <div className="space-y-2">
+          <Label htmlFor="period" className="text-sm font-body font-medium text-foreground">
+            Period
+          </Label>
+          <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
+            <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className="bg-popover border-border">
+              <SelectItem value="Weekly">Weekly</SelectItem>
+              <SelectItem value="Monthly">Monthly</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 pt-4">
+          <Button
+            type="submit"
+            className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            {editingBudget ? "Update Budget" : "Set Budget"}
+          </Button>
+          {editingBudget && onCancelEdit && (
             <Button
-              type="submit"
-              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+              type="button"
+              variant="outline"
+              onClick={onCancelEdit}
+              className="border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground font-body font-medium transition-all duration-200"
             >
-              {editingBudget ? "Update Budget" : "Set Budget"}
+              Cancel
             </Button>
-            {editingBudget && onCancelEdit && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={onCancelEdit}
-                className="border-border bg-secondary hover:bg-secondary/80 text-secondary-foreground font-body font-medium transition-all duration-200"
-              >
-                Cancel
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    </form>
+          )}
+        </div>
+      </form>
+    </div>
   )
 }

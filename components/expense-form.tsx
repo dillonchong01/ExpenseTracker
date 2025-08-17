@@ -57,22 +57,31 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
 
   return (
     <div className="space-y-4">
-      {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        {editingBudget ? <Edit3 className="h-6 w-6 text-primary" /> : <Target className="h-6 w-6 text-primary" />}
-        <h2 className="text-2xl font-heading text-foreground">
-          {editingBudget ? "Edit Budget" : "Set New Budget"}
-        </h2>
+        {editingExpense ? <Edit3 className="h-6 w-6 text-primary" /> : <PlusCircle className="h-6 w-6 text-primary" />}
+        <h2 className="text-2xl font-heading text-foreground">{editingExpense ? "Edit Expense" : "Add New Expense"}</h2>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Category */}
+        <div className="space-y-2">
+          <Label htmlFor="itemName" className="text-sm font-body font-medium text-foreground">
+            Item Name
+          </Label>
+          <Input
+            id="itemName"
+            value={itemName}
+            onChange={(e) => handleItemNameChange(e.target.value)}
+            placeholder="e.g., Matcha"
+            className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+            required
+          />
+        </div>
+
         <div className="space-y-2">
           <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
             Category
           </Label>
-          <Select value={category} onValueChange={setCategory} required>
+          <Select value={category} onValueChange={setCategory}>
             <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
@@ -86,48 +95,46 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
           </Select>
         </div>
 
-        {/* Amount */}
-        <div className="space-y-2">
-          <Label htmlFor="amount" className="text-sm font-body font-medium text-foreground">
-            Budget Amount ($)
-          </Label>
-          <Input
-            id="amount"
-            type="number"
-            step="0.01"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            placeholder="0"
-            className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
-            required
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <Label htmlFor="amount" className="text-sm font-body font-medium text-foreground">
+              Amount ($)
+            </Label>
+            <Input
+              id="amount"
+              type="number"
+              step="0.01"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="0"
+              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+              required
+            />
+          </div>
+
+          <div className="space-y-3y">
+            <Label htmlFor="date" className="text-sm font-body font-medium text-foreground">
+              Date
+            </Label>
+            <Input
+              id="date"
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body"
+              required
+            />
+          </div>
         </div>
 
-        {/* Period */}
-        <div className="space-y-2">
-          <Label htmlFor="period" className="text-sm font-body font-medium text-foreground">
-            Period
-          </Label>
-          <Select value={period} onValueChange={(value: "Weekly" | "Monthly") => setPeriod(value)}>
-            <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent className="bg-popover border-border">
-              <SelectItem value="Weekly">Weekly</SelectItem>
-              <SelectItem value="Monthly">Monthly</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3 pt-4">
           <Button
             type="submit"
             className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
           >
-            {editingBudget ? "Update Budget" : "Set Budget"}
+            {editingExpense ? "Update Expense" : "Add Expense"}
           </Button>
-          {editingBudget && onCancelEdit && (
+          {editingExpense && onCancelEdit && (
             <Button
               type="button"
               variant="outline"
