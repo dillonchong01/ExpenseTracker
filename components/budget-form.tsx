@@ -39,7 +39,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
   }
 
   return (
-    <div className="mx-auto py-6 space-y-6" style={{ width: "90%" }}>
+    <div className="py-6 space-y-6">
       <form onSubmit={handleSubmit} className="w-full">
         <Card className="w-full bg-[#A7C7E7]/10 border-[#A7C7E7]/30 py-4">
           <CardHeader className="py-4">
