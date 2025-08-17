@@ -107,17 +107,9 @@ export default function ExpenseManager() {
           </div>
         )
       case "analytics":
-        return (
-          <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
-            <AnalyticsDashboard expenses={expenses} budgets={budgets} />
-          </div>
-        )
+        return <AnalyticsDashboard expenses={expenses} budgets={budgets} />
       case "trends":
-        return (
-          <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
-            <TrendsDashboard expenses={expenses} budgets={budgets} />
-          </div>
-        )
+        return <TrendsDashboard expenses={expenses} budgets={budgets} />
       default:
         return null
     }

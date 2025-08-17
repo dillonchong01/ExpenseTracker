@@ -90,7 +90,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
   }
 
   return (
-    <div>
+    <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="bg-[#F5DEB3] border-[#FFD9B3]">
