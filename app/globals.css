@@ -9,9 +9,9 @@
   --foreground: #1f2937; /* Dark Gray for text */
   --card: #ffffff; /* Soft White for cards */
   --card-foreground: #1f2937; /* Dark Gray for card text */
-  --popover: #a0d3e8; /* Pastel Blue for popovers */
+  --popover: #8BC6FC; /* Pastel Blue for popovers */
   --popover-foreground: #1f2937; /* Dark Gray for popover text */
-  --primary: #a0d3e8; /* Pastel Blue for buttons and highlights */
+  --primary: #8BC6FC; /* Pastel Blue for buttons and highlights */
   --primary-foreground: #1f2937; /* Dark Gray for primary text */
   --secondary: #ffd1c1; /* Soft peach for secondary actions */
   --secondary-foreground: #1f2937; /* Dark Gray for secondary text */
@@ -24,7 +24,7 @@
   --border: #d1d5db; /* Light gray for borders */
   --input: #ffffff; /* White for input fields */
   --ring: rgba(160, 211, 232, 0.5); /* Soft blue ring for focus states */
-  --chart-1: #a0d3e8; /* Pastel Blue for chart elements */
+  --chart-1: #8BC6FC; /* Pastel Blue for chart elements */
   --chart-2: #ffd1c1; /* Soft peach for chart elements */
   --chart-3: #e6eaf0; /* Light gray for chart elements */
   --chart-4: #ffb6b9; /* Soft coral/peach for chart elements */
@@ -32,7 +32,7 @@
   --radius: 0.75rem; /* Rounded corners for a softer look */
   --sidebar: #e6eaf0; /* Light Gray for sidebar background */
   --sidebar-foreground: #1f2937; /* Dark Gray for sidebar text */
-  --sidebar-primary: #a0d3e8; /* Pastel Blue for primary sidebar items */
+  --sidebar-primary: #8BC6FC; /* Pastel Blue for primary sidebar items */
   --sidebar-primary-foreground: #1f2937; /* Dark Gray for primary sidebar text */
   --sidebar-accent: #ffb6b9; /* Soft peach for sidebar accents */
   --sidebar-accent-foreground: #1f2937; /* Dark Gray for sidebar accent text */
@@ -130,7 +130,7 @@
 
   /* Added modern gradient background and typography utilities */
   .gradient-bg {
-    background: linear-gradient(135deg, #a0d3e8 0%, #ffb6b9 50%, #d8b4fe 100%);
+    background: linear-gradient(135deg, #8BC6FC 0%, #ffffff 50%, #fff0d7 100%);
     min-height: 100vh;
   }
   .glass-card {
