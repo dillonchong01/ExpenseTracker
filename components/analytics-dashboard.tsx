@@ -79,23 +79,21 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
 
   if (expenses.length === 0) {
     return (
-      <div className="mx-auto py-6 pb-20 md:pb-6" style={{ width: "90%" }}>
-        <Card className="bg-[#A7C7E7]/5 border-[#A7C7E7]/20">
-          <CardContent className="py-12 text-center">
-            <BarChart3 className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
-            <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No data to analyze</h3>
-            <p className="text-muted-foreground">Add some expenses to see your monthly analytics.</p>
-          </CardContent>
-        </Card>
-      </div>
+      <Card className="bg-[#F5DEB3]/70 border-[#FFD9B3]/40">
+        <CardContent className="py-12 text-center">
+          <BarChart3 className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
+          <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No data to analyze</h3>
+          <p className="text-muted-foreground">Add some expenses to see your monthly analytics.</p>
+        </CardContent>
+      </Card>
     )
   }
 
   return (
-    <div className="mx-auto py-6 pb-20 md:pb-6 space-y-6" style={{ width: "90%" }}>
+    <div>
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="bg-[#FFF0D7]/70 border-[#FFD9B3]/40">
+        <Card className="bg-[#F5DEB3]/70 border-[#FFD9B3]/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <DollarSign className="h-4 w-4 text-[#6B9AC4]" />
@@ -107,7 +105,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
           </CardContent>
         </Card>
 
-        <Card className="bg-[#FFF0D7]/70 border-[#FFD9B3]/40">
+        <Card className="bg-[#F5DEB3]/70 border-[#FFD9B3]/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-[#6B9AC4]" />
@@ -119,7 +117,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
           </CardContent>
         </Card>
 
-        <Card className="bg-[#D8EFFF]/60 border-[#A7C7E7]/40">
+        <Card className="bg-[#F5DEB3]/70 border-[#FFD9B3]/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-[#6B9AC4]" />
@@ -131,7 +129,7 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
           </CardContent>
         </Card>
 
-        <Card className="bg-[#FFF0D7]/70 border-[#FFD9B3]/40">
+        <Card className="bg-[#F5DEB3]/70 border-[#FFD9B3]/40">
           <CardContent className="p-4">
             <div className="flex items-center gap-2">
               <PieChartIcon className="h-4 w-4 text-[#6B9AC4]" />
