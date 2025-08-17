@@ -62,8 +62,8 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
         <h2 className="text-2xl font-heading text-foreground">{editingExpense ? "Edit Expense" : "Add New Expense"}</h2>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-3">
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="space-y-2">
           <Label htmlFor="itemName" className="text-sm font-body font-medium text-foreground">
             Item Name
           </Label>
@@ -77,12 +77,12 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
           />
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           <Label htmlFor="category" className="text-sm font-body font-medium text-foreground">
             Category
           </Label>
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
+            <SelectTrigger className="w-full bg-input border-border focus:border-primary focus:ring-ring transition-all duration-200 font-body">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
             <SelectContent className="bg-popover border-border">
@@ -96,7 +96,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-3">
+          <div className="space-y-2">
             <Label htmlFor="amount" className="text-sm font-body font-medium text-foreground">
               Amount ($)
             </Label>
@@ -112,7 +112,7 @@ export function ExpenseForm({ onSubmit, editingExpense, onCancelEdit }: ExpenseF
             />
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             <Label htmlFor="date" className="text-sm font-body font-medium text-foreground">
               Date
             </Label>

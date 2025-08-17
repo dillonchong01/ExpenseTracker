@@ -50,7 +50,7 @@ export function ExpenseList({ expenses, onEdit, onDelete }: ExpenseListProps) {
 
   return (
     <div className="space-y-4">
-      <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30">
+      <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30 flex items-center h-24">
         <CardHeader className="pb-3">
           <CardTitle className="text-[#6B9AC4] text-lg">Total Expenses: ${totalAmount.toFixed(2)}</CardTitle>
         </CardHeader>
