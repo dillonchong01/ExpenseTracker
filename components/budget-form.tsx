@@ -41,14 +41,14 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <Card className="w-full bg-[#FFFFFF]">
-        <CardHeader className="py-4">
+        <CardHeader className="py-3">
           <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0">
             {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
             {editingBudget ? "Edit Budget" : "Set New Budget"}
           </CardTitle>
         </CardHeader>
 
-        <CardContent className="w-full space-y-5">
+        <CardContent className="w-full space-y-4">
           {/* Category */}
           <div className="space-y-2">
             <Label htmlFor="category">Category</Label>
