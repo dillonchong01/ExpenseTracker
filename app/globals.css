@@ -4,44 +4,44 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to pastel blue and cream yellow color palette */
-  --background: #fff8e1; /* Light Cream for the overall background */
+  /* Updated modern color palette: pastel blue main, soft coral accents, light cream/gray neutrals */
+  --background: #f0f4f8; /* Soft light gray background */
   --foreground: #1f2937; /* Dark Gray for text */
   --card: #ffffff; /* Soft White for cards */
   --card-foreground: #1f2937; /* Dark Gray for card text */
   --popover: #a0d3e8; /* Pastel Blue for popovers */
   --popover-foreground: #1f2937; /* Dark Gray for popover text */
-  --primary: #a0d3e8; /* Primary color for buttons and highlights */
+  --primary: #a0d3e8; /* Pastel Blue for buttons and highlights */
   --primary-foreground: #1f2937; /* Dark Gray for primary text */
-  --secondary: #ffeb3b; /* Cream Yellow for secondary actions */
+  --secondary: #ffe8b3; /* Soft yellow for secondary actions */
   --secondary-foreground: #1f2937; /* Dark Gray for secondary text */
-  --muted: #f0f4f8; /* Light Gray for muted text */
+  --muted: #e6eaf0; /* Very light gray for muted text areas */
   --muted-foreground: #6b7280; /* Medium Gray for muted text */
-  --accent: #ffeb3b; /* Accent color for highlights and notifications */
+  --accent: #ffb6b9; /* Soft coral for accents and notifications */
   --accent-foreground: #1f2937; /* Dark Gray for accent text */
-  --destructive: #ff5252; /* Red for destructive actions */
+  --destructive: #ef4444; /* Red for destructive actions */
   --destructive-foreground: #ffffff; /* White for destructive text */
-  --border: #e0e0e0; /* Light gray for borders */
+  --border: #d1d5db; /* Light gray for borders */
   --input: #ffffff; /* White for input fields */
   --ring: rgba(160, 211, 232, 0.5); /* Soft blue ring for focus states */
   --chart-1: #a0d3e8; /* Pastel Blue for chart elements */
-  --chart-2: #ffeb3b; /* Cream Yellow for chart elements */
-  --chart-3: #f0f4f8; /* Light Gray for chart elements */
-  --chart-4: #fff8e1; /* Light Cream for chart elements */
+  --chart-2: #ffe8b3; /* Soft yellow for chart elements */
+  --chart-3: #e6eaf0; /* Light gray for chart elements */
+  --chart-4: #ffb6b9; /* Soft coral for chart elements */
   --chart-5: #1f2937; /* Dark Gray for chart elements */
   --radius: 0.75rem; /* Rounded corners for a softer look */
-  --sidebar: #f0f4f8; /* Light Gray for the sidebar background */
+  --sidebar: #e6eaf0; /* Light Gray for sidebar background */
   --sidebar-foreground: #1f2937; /* Dark Gray for sidebar text */
   --sidebar-primary: #a0d3e8; /* Pastel Blue for primary sidebar items */
   --sidebar-primary-foreground: #1f2937; /* Dark Gray for primary sidebar text */
-  --sidebar-accent: #ffeb3b; /* Cream Yellow for sidebar accents */
+  --sidebar-accent: #ffb6b9; /* Soft coral for sidebar accents */
   --sidebar-accent-foreground: #1f2937; /* Dark Gray for sidebar accent text */
-  --sidebar-border: #e0e0e0; /* Light gray for sidebar borders */
+  --sidebar-border: #d1d5db; /* Light gray for sidebar borders */
   --sidebar-ring: rgba(160, 211, 232, 0.5); /* Soft blue ring for sidebar focus */
 }
 
 .dark {
-  /* Updated dark mode colors to complement the new palette */
+  /* Dark mode colors */
   --background: #1a1a2e;
   --foreground: #f8fafc;
   --card: #16213e;
@@ -130,7 +130,7 @@
 
   /* Added modern gradient background and typography utilities */
   .gradient-bg {
-    background: linear-gradient(135deg, #fff8e1 0%, #f0f4f8 50%, #a0d3e8 100%);
+    background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 50%, #a0d3e8 100%);
     min-height: 100vh;
   }
 
