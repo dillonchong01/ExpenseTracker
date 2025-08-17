@@ -130,7 +130,7 @@
 
   /* Added modern gradient background and typography utilities */
   .gradient-bg {
-    background: linear-gradient(135deg, #8BC6FC 0%, #8BC6FC 40%, #fff0d7 70%, #ffffff 100%);
+    background: linear-gradient(135deg, #8BC6FC 0%, #fff0d7 60%, #ffffff 100%);
     min-height: 100vh;
   }
 
