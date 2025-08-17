@@ -40,7 +40,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <Card className="w-full bg-[#A7C7E7]/80 border-[#A7C7E7]/80">
+      <Card className="w-full bg-[#A7C7E7]/30 border-[#A7C7E7]/50">
         <CardHeader className="py-4">
           <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0">
             {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
