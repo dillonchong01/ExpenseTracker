@@ -40,7 +40,7 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <Card className="w-full bg-#FFFFFF">
+      <Card className="w-full bg-[#FFFFFF]">
         <CardHeader className="py-4">
           <CardTitle className="flex items-center gap-2 text-[#6B9AC4] m-0">
             {editingBudget ? <Edit3 className="h-5 w-5" /> : <Target className="h-5 w-5" />}
@@ -97,7 +97,10 @@ export function BudgetForm({ onSubmit, editingBudget, onCancelEdit }: BudgetForm
 
           {/* Buttons */}
           <div className="flex gap-2 pt-4">
-            <Button type="submit" className="flex-1 bg-[#6B9AC4] hover:bg-[#6B9AC4]/90">
+            <Button
+              type="submit"
+              className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
               {editingBudget ? "Update Budget" : "Set Budget"}
             </Button>
             {editingBudget && onCancelEdit && (

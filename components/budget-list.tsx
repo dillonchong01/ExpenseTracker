@@ -73,7 +73,7 @@ export function BudgetList({ budgets, expenses, onEdit, onDelete }: BudgetListPr
   return (
     <div className="space-y-4 w-[90%] mx-auto">
       <Card className="bg-[#6B9AC4]/10 border-[#6B9AC4]/30 w-full">
-        <CardHeader className="pb-1">
+        <CardHeader className="pb-0">
           <CardTitle className="text-[#6B9AC4] text-lg">Budget Overview</CardTitle>
         </CardHeader>
         <CardContent>
