@@ -30,7 +30,7 @@ export default function AuthGate({ children }: { children: ReactNode }) {
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-emerald-500 shadow-inner flex items-center justify-center text-white font-semibold">€</div>
               <div>
-                <h1 className="text-xl font-semibold tracking-tight">Welcome back</h1>
+                <h1 className="text-xl font-semibold tracking-tight">Welcome Back to ExpenseTracker!</h1>
                 <p className="text-sm text-black/60 dark:text-white/60">Sign in to continue tracking</p>
               </div>
             </div>
@@ -50,7 +50,7 @@ export default function AuthGate({ children }: { children: ReactNode }) {
 
             {/* Email link */}
             <a href="/sign-in" className="cursor-pointer block text-center h-11 leading-[44px] rounded-xl bg-gradient-to-br from-indigo-500/90 to-emerald-500/90 text-white font-medium shadow-[0_12px_30px_-12px_rgba(99,102,241,.6)] hover:shadow-[0_16px_36px_-12px_rgba(16,185,129,.55)] transition-shadow" suppressHydrationWarning>
-              Sign in with Email
+              Sign In with Email
             </a>
           </div>
         </div>
