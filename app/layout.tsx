@@ -6,9 +6,8 @@ import { Space_Grotesk, DM_Sans } from "next/font/google"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "v0 App",
-  description: "Created with v0",
-  generator: "v0.app",
+  title: "Expense Tracker",
+  description: "Track your expenses and budgets easily",
 }
 
 const spaceGrotesk = Space_Grotesk({

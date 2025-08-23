@@ -79,13 +79,15 @@ export function AnalyticsDashboard({ expenses, budgets }: AnalyticsDashboardProp
 
   if (expenses.length === 0) {
     return (
-      <Card className="bg-[#F5DEB3] border-[#FFD9B3]">
-        <CardContent className="py-12 text-center">
-          <BarChart3 className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
-          <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No data to analyze</h3>
-          <p className="text-muted-foreground">Add some expenses to see your monthly analytics.</p>
-        </CardContent>
-      </Card>
+      <div className="w-[90%] mx-auto py-8 pb-24 md:pb-8 space-y-8">
+        <Card className="bg-[#F5DEB3] border-[#FFD9B3]">
+          <CardContent className="py-12 text-center">
+            <BarChart3 className="h-12 w-12 mx-auto text-[#CADBEB] mb-4" />
+            <h3 className="text-lg font-medium text-[#6B9AC4] mb-2">No data to analyze</h3>
+            <p className="text-muted-foreground">Add some expenses to see your monthly analytics.</p>
+          </CardContent>
+        </Card>
+      </div>
     )
   }
 
